@@ -94,6 +94,37 @@
 					<snapshotToTimestamp>true</snapshotToTimestamp>
 				</configuration>
 			</plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-resources-plugin</artifactId>
+                <executions>
+                    <execution>
+                        <id>share-config-custom-rad</id>
+                        <phase>process-resources</phase>
+                        <goals><goal>copy-resources</goal></goals>
+                        <configuration>
+                            <outputDirectory>${project.build.testOutputDirectory}</outputDirectory>
+                            <resources>
+                                <resource>
+                                    <directory>src/main/resources/META-INF</directory>
+                                    <filtering>${app.filtering.enabled}</filtering>
+                                    <targetPath>alfresco/web-extension</targetPath>
+                                    <includes>
+                                        <include>share-config-custom.xml</include>
+                                    </includes>
+                                </resource>
+                                <resource>
+                                    <directory>src/main/resources/META-INF</directory>
+                                    <filtering>${app.filtering.enabled}</filtering>
+                                    <excludes>
+                                        <exclude>share-config-custom.xml</exclude>
+                                    </excludes>
+                                </resource>
+                            </resources>
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin>
     	</plugins>
     </build>
 
@@ -131,49 +162,26 @@
 		            </executions>
 		          </plugin>
 		          <!-- Configure tomcat context.xml included in the webapp with proper filtering -->
-                  <plugin>
-                        <groupId>org.apache.maven.plugins</groupId>
-                        <artifactId>maven-resources-plugin</artifactId>
-                        <executions>
-                            <execution>
-                                <id>copy-metainf</id>
-                                <phase>process-resources</phase>
-                                <goals><goal>copy-resources</goal></goals>
-                                <configuration>
-                                    <outputDirectory>${project.build.testOutputDirectory}</outputDirectory>
-                                    <resources>
-                                        <resource>
-                                            <directory>src/main/resources/META-INF</directory>
-                                            <filtering>${app.filtering.enabled}</filtering>
-                                            <targetPath>alfresco/web-extension</targetPath>
-                                            <includes>
-                                                <include>share-**</include>
-                                                <include>custom-**</include>
-                                            </includes>
-                                        </resource>
-                                    </resources>
-                                </configuration>
-                            </execution>
-                            <execution>
-                                <id>copy-rad-resources</id>
-                                <phase>process-resources</phase>
-                                <goals><goal>copy-resources</goal></goals>
-                                <configuration>
-                                    <outputDirectory>target/${project.build.finalName}</outputDirectory>
-                                    <resources>
-                                        <resource>
-            								<directory>target/${project.build.finalName}</directory>
-											<filtering>false</filtering>
-											<includes>
-												<include>module.properties</include>
-											</includes>
-											<targetPath>config/alfresco/module/${project.artifactId}</targetPath>
-										</resource>
-                                    </resources>
-                                </configuration>
-                            </execution>
-                        </executions>
-                    </plugin>
+                            <!--<execution>-->
+                                <!--<id>copy-rad-resources</id>-->
+                                <!--<phase>process-resources</phase>-->
+                                <!--<goals><goal>copy-resources</goal></goals>-->
+                                <!--<configuration>-->
+                                    <!--<outputDirectory>target/${project.build.finalName}</outputDirectory>-->
+                                    <!--<resources>-->
+                                        <!--<resource>-->
+            								<!--<directory>target/${project.build.finalName}</directory>-->
+											<!--<filtering>false</filtering>-->
+											<!--<includes>-->
+												<!--<include>module.properties</include>-->
+											<!--</includes>-->
+											<!--<targetPath>config/alfresco/module/${project.artifactId}</targetPath>-->
+										<!--</resource>-->
+                                    <!--</resources>-->
+                                <!--</configuration>-->
+                            <!--</execution>-->
+                        <!--</executions>-->
+                    <!--</plugin>-->
                     <!-- Configures tomcat to run against the overlaid WAR + AMP -->
                     <plugin>
                         <groupId>org.apache.tomcat.maven</groupId>
