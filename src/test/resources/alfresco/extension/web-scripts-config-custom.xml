@@ -1,0 +1,14 @@
+<alfresco-config>
+
+	<!-- This is currently not working (for repo). Still requires manual reload -->
+	<config evaluator="string-compare" condition="WebFramework">
+		<web-framework>
+			<!-- Autowire Runtime Settings -->
+			<autowire>
+				<!-- Pick the mode: development, preview, production -->
+				<mode>development</mode>
+			</autowire>
+		</web-framework>
+	</config>
+
+</alfresco-config>
