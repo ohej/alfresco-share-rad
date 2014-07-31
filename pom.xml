@@ -50,6 +50,17 @@
         </dependencies>
     </dependencyManagement>
 
+    <dependencies>
+        <dependency>
+            <groupId>log4j</groupId>
+            <artifactId>log4j</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework.extensions.surf</groupId>
+            <artifactId>spring-webscripts</artifactId>
+            <version>1.2.1-M21</version>
+        </dependency>
+    </dependencies>
     <!-- This repository is only needed to retrieve Alfresco parent POM. 
         NOTE: This can be removed when/if Alfresco will be on Maven Central 
         
@@ -137,6 +148,7 @@
                                             <targetPath>alfresco/web-extension</targetPath>
                                             <includes>
                                                 <include>share-**</include>
+                                                <include>custom-**</include>
                                             </includes>
                                         </resource>
                                     </resources>

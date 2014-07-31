@@ -1,0 +1,8 @@
+<webscript>
+    <shortname>Post Content Rating</shortname>
+    <description>Gets rating data</description>
+    <url>/rating</url>
+    <format default="json">extension</format>
+    <authentication>guest</authentication>
+    <transaction>none</transaction>
+</webscript>
