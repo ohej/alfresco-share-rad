@@ -7,7 +7,7 @@
     
      
     <Loader className="org.apache.catalina.loader.VirtualWebappLoader"
-    virtualClasspath="${project.build.directory}/classes/META-INF;${project.build.outputDirectory};${project.build.testOutputDirectory};${project.build.directory}/${project.build.finalName}/config" />
+    virtualClasspath="${project.build.outputDirectory};${project.build.testOutputDirectory};${project.build.directory}/${project.build.finalName}/config" />
   
   <!-- 
   <Environment override="false" type="java.lang.Boolean" name="properties/startup.enable" description="A flag that globally enables or disables startup of the major Alfresco subsystems." value="true"/>
